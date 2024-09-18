@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milionerzy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 20px;
+        }
+        .question {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .answer {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .answer:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Gra w Milionerzy</h1>
+<div id="game">
+    <div id="question" class="question"></div>
+    <div id="answers"></div>
+</div>
+<div id="result"></div>
+<button id="next" style="display: none;">Następne pytanie</button>
+
+<script>
+    const questions = [
+        {
+            question: "Jakie jest stolicą Polski?",
+            answers: ["Warszawa", "Kraków", "Wrocław", "Gdańsk"],
+            correct: 0
+        },
+        {
+            question: "Ile to 2 + 2?",
+            answers: ["3", "4", "5", "6"],
+            correct: 1
+        },
+        // Dodaj tutaj pozostałe pytania (łącznie 100)
+        {
+            question: "Jak nazywa się najdłuższa rzeka w Polsce?",
+            answers: ["Wisła", "Odra", "Warta", "Bug"],
+            correct: 0
+        },
+        {
+            question: "Kto napisał 'Pana Tadeusza'?",
+            answers: ["Adam Mickiewicz", "Juliusz Słowacki", "Henryk Sienkiewicz", "Bolesław Prus"],
+            correct: 0
+        }
+        // Możesz dodać więcej pytań w tym samym formacie
+    ];
+
+    let currentQuestion = 0;
+
+    function loadQuestion() {
+        const questionData = questions[currentQuestion];
+        document.getElementById('question').innerText = questionData.question;
+
+        const answersDiv = document.getElementById('answers');
+        answersDiv.innerHTML = ''; // Wyczyść poprzednie odpowiedzi
+
+        questionData.answers.forEach((answer, index) => {
+            const answerDiv = document.createElement('div');
+            answerDiv.className = 'answer';
+            answerDiv.innerText = answer;
+            answerDiv.addEventListener('click', () => checkAnswer(index));
+            answersDiv.appendChild(answerDiv);
+        });
+
+        document.getElementById('next').style.display = 'none';
+    }
+
+    function checkAnswer(selectedIndex) {
+        const questionData = questions[currentQuestion];
+        if (selectedIndex === questionData.correct) {
+            document.getElementById('result').innerText = "Dobrze!";
+        } else {
+            document.getElementById('result').innerText = "Źle! Prawidłowa odpowiedź to: " + questionData.answers[questionData.correct];
+        }
+        
+        document.getElementById('next').style.display = 'block';
+    }
+
+    document.getElementById('next').addEventListener('click', () => {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+            loadQuestion();
+            document.getElementById('result').innerText = '';
+        } else {
+            document.getElementById('game').innerHTML = '<h2>Koniec gry!</h2>';
+        }
+    });
+
+    // Załaduj pierwsze pytanie
+    loadQuestion();
+</script>
+
+</body>
+</html>
