@@ -44,30 +44,136 @@
 <button id="next" style="display: none;">Następne pytanie</button>
 
 <script>
-    const questions = [
-        {
-            question: "Jakie jest stolicą Polski?",
-            answers: ["Warszawa", "Kraków", "Wrocław", "Gdańsk"],
-            correct: 0
-        },
-        {
-            question: "Ile to 2 + 2?",
-            answers: ["3", "4", "5", "6"],
-            correct: 1
-        },
-        // Dodaj tutaj pozostałe pytania (łącznie 100)
-        {
-            question: "Jak nazywa się najdłuższa rzeka w Polsce?",
-            answers: ["Wisła", "Odra", "Warta", "Bug"],
-            correct: 0
-        },
-        {
-            question: "Kto napisał 'Pana Tadeusza'?",
-            answers: ["Adam Mickiewicz", "Juliusz Słowacki", "Henryk Sienkiewicz", "Bolesław Prus"],
-            correct: 0
-        }
-        // Możesz dodać więcej pytań w tym samym formacie
-    ];
+        const questions = [
+            // Historia
+            { question: "W którym roku wybuchło powstanie warszawskie?", answers: ["1939", "1943", "1944", "1945"], correct: 2 },
+            { question: "Kto był pierwszym królem Polski?", answers: ["Mieszko I", "Bolesław Chrobry", "Kazimierz Wielki", "Władysław Jagiełło"], correct: 1 },
+            { question: "Bitwa pod Grunwaldem odbyła się w roku:", answers: ["1410", "1525", "1655", "1794"], correct: 0 },
+            { question: "Kim był Tadeusz Kościuszko?", answers: ["Królem Polski", "Naczelnikiem powstania", "Poetą romantycznym", "Malarzem"], correct: 1 },
+            { question: "W którym wieku żył Mikołaj Kopernik?", answers: ["XIV", "XV", "XVI", "XVII"], correct: 2 },
+
+            // Geografia
+            { question: "Najwyższy szczyt w Polsce to:", answers: ["Rysy", "Giewont", "Śnieżka", "Babia Góra"], correct: 0 },
+            { question: "Stolicą Niemiec jest:", answers: ["Berlin", "Monachium", "Frankfurt", "Hamburg"], correct: 0 },
+            { question: "Który kontynent jest największy?", answers: ["Afryka", "Ameryka Północna", "Azja", "Europa"], correct: 2 },
+            { question: "Na którym kontynencie leży Egipt?", answers: ["Afryka", "Azja", "Europa", "Ameryka Południowa"], correct: 0 },
+            { question: "Ile stanów ma Stany Zjednoczone?", answers: ["48", "50", "51", "52"], correct: 1 },
+
+            // Literatura
+            { question: "Autorem 'Lalki' jest:", answers: ["Henryk Sienkiewicz", "Bolesław Prus", "Eliza Orzeszkowa", "Stefan Żeromski"], correct: 1 },
+            { question: "Który poeta napisał 'Treny'?", answers: ["Adam Mickiewicz", "Jan Kochanowski", "Juliusz Słowacki", "Cyprian Kamil Norwid"], correct: 1 },
+            { question: "Głównym bohaterem 'Dziadów' jest:", answers: ["Konrad", "Gustaw", "Kordian", "Jacek Soplica"], correct: 0 },
+            { question: "Kto otrzymał literacką Nagrodę Nobla w 1996 roku?", answers: ["Wisława Szymborska", "Czesław Miłosz", "Olga Tokarczuk", "Henryk Sienkiewicz"], correct: 0 },
+            { question: "W jakim mieście rozgrywa się akcja 'Zbrodni i kary'?", answers: ["Moskwa", "Petersburg", "Kijów", "Warszawa"], correct: 1 },
+
+            // Sztuka i kultura
+            { question: "Kto namalował 'Damę z gronostajem'?", answers: ["Leonardo da Vinci", "Rembrandt", "Vincent van Gogh", "Leonardo da Vinci"], correct: 0 },
+            { question: "Kompozytorem 'Poloneza Ogińskiego' jest:", answers: ["Fryderyk Chopin", "Michał Kleofas Ogiński", "Stanisław Moniuszko", "Karol Szymanowski"], correct: 1 },
+            { question: "Reżyserem filmu 'Pianista' jest:", answers: ["Andrzej Wajda", "Krzysztof Kieślowski", "Roman Polański", "Agnieszka Holland"], correct: 2 },
+            { question: "W którym mieście znajduje się Teatr Wielki - Opera Narodowa?", answers: ["Warszawa", "Kraków", "Wrocław", "Poznań"], correct: 0 },
+            { question: "Kto jest autorem rzeźby 'Dawid'?", answers: ["Michał Anioł", "Leonardo da Vinci", "Donatello", "Rafael"], correct: 0 },
+
+            // Nauka i technologia
+            { question: "Wzór chemiczny wody to:", answers: ["H2O", "CO2", "NaCl", "O2"], correct: 0 },
+            { question: "Kto sformułował teorię względności?", answers: ["Isaac Newton", "Albert Einstein", "Galileo Galilei", "Stephen Hawking"], correct: 1 },
+            { question: "Jaka jest jednostka siły?", answers: ["Newton", "Dżul", "Wat", "Amper"], correct: 0 },
+            { question: "Kto wynalazł żarówkę?", answers: ["Thomas Edison", "Nikola Tesla", "Alexander Graham Bell", "Guglielmo Marconi"], correct: 0 },
+            { question: "Co oznacza skrót 'www'?", answers: ["World Wide Web", "Wild Wild West", "Wonderful World of Wonders", "We Will Win"], correct: 0 },
+
+            // Sport
+            { question: "Ilu zawodników liczy drużyna piłki nożnej?", answers: ["9", "10", "11", "12"], correct: 2 },
+            { question: "W którym roku Polska była gospodarzem Mistrzostw Europy w Piłce Nożnej?", answers: ["2008", "2012", "2016", "2020"], correct: 1 },
+            { question: "Kto jest rekordzistą świata w biegu na 100 metrów mężczyzn?", answers: ["Usain Bolt", "Carl Lewis", "Jesse Owens", "Tyson Gay"], correct: 0 },
+            { question: "W jakiej dyscyplinie sportu specjalizowała się Irena Szewińska?", answers: ["Lekkoatletyka", "Pływanie", "Gimnastyka", "Tenis"], correct: 0 },
+            { question: "Który klub piłkarski zdobył najwięcej tytułów mistrza Polski?", answers: ["Legia Warszawa", "Górnik Zabrze", "Ruch Chorzów", "Wisła Kraków"], correct: 0 },
+
+            // Rozrywka
+            { question: "Kto wygrał pierwszą edycję polskiej wersji programu 'Big Brother'?", answers: ["Janusz Dzięcioł", "Manuela Michalak", "Piotr Gulczyński", "Klaudiusz Ševković"], correct: 0 },
+            { question: "W którym filmie wystąpił Daniel Radcliffe jako Harry Potter?", answers: ["Harry Potter i Kamień Filozoficzny", "Władca Pierścieni: Drużyna Pierścienia", "Piraci z Karaibów: Klątwa Czarnej Perły", "Opowieści z Narnii: Lew, Czarownica i stara szafa"], correct: 0 },
+            { question: "Kto jest wokalistą zespołu Coldplay?", answers: ["Chris Martin", "Bono", "Mick Jagger", "Freddie Mercury"], correct: 0 },
+            { question: "W jakim mieście odbywa się Festiwal Polskich Filmów Fabularnych?", answers: ["Gdynia", "Sopot", "Kraków", "Warszawa"], correct: 0 }
+            // Wiedza ogólna
+            { question: "Ile wynosi suma kątów w trójkącie?", answers: ["90 stopni", "180 stopni", "270 stopni", "360 stopni"], correct: 1 },
+            { question: "Co jest przeciwieństwem słowa 'gorący'?", answers: ["Zimny", "Ciepły", "Letni", "Wrzący"], correct: 0 },
+            { question: "Ile dni ma rok przestępny?", answers: ["365", "366", "367", "368"], correct: 1 },
+            { question: "Jaki kolor ma flaga Polski?", answers: ["Biało-czerwony", "Czerwono-biały", "Niebiesko-żółty", "Zielono-biało-czerwony"], correct: 0 },
+            { question: "Jakie jest stolicą Polski?", answers: ["Warszawa", "Kraków", "Wrocław", "Gdańsk"], correct: 0 },
+            { question: "Ile to 2 + 2?", answers: ["3", "4", "5", "6"], correct: 1 },
+            { question: "Jak nazywa się najdłuższa rzeka w Polsce?", answers: ["Wisła", "Odra", "Warta", "Bug"], correct: 0 },
+            { question: "Kto napisał 'Pana Tadeusza'?", answers: ["Adam Mickiewicz", "Juliusz Słowacki", "Henryk Sienkiewicz", "Bolesław Prus"], correct: 0 },
+            { question: "Ile kontynentów jest na Ziemi?", answers: ["5", "6", "7", "8"], correct: 2 },
+            { question: "Która planeta jest znana jako Czerwona Planeta?", answers: ["Mars", "Jowisz", "Wenus", "Saturn"], correct: 0 },
+            { question: "Jak nazywa się największy ocean na Ziemi?", answers: ["Ocean Spokojny", "Ocean Atlantycki", "Ocean Indyjski", "Ocean Arktyczny"], correct: 0 },
+            { question: "Kto jest autorem teorii względności?", answers: ["Isaac Newton", "Albert Einstein", "Galileo Galilei", "Nikola Tesla"], correct: 1 },
+            { question: "Jak nazywa się najbliższa Ziemi gwiazda?", answers: ["Słońce", "Proxima Centauri", "Sirius", "Betelgeza"], correct: 0 },
+            { question: "W jakim roku odbyła się pierwsza podróż na Księżyc?", answers: ["1969", "1971", "1955", "1980"], correct: 0 },
+            // Dodane pytania
+            { question: "Które zwierzę jest największe na Ziemi?", answers: ["Wieloryb", "Słoń", "Rekin", "Niedźwiedź"], correct: 0 },
+            { question: "Jak nazywa się najdłuższy mur na świecie?", answers: ["Mur Chiński", "Mur Hadriana", "Mur Berliński", "Mur Wschodni"], correct: 0 },
+            { question: "Co to jest fotosynteza?", answers: ["Proces oddychania roślin", "Proces wytwarzania energii przez rośliny", "Proces rozmnażania roślin", "Proces usuwania wody z roślin"], correct: 1 },
+            { question: "Jakie jest najpopularniejsze imię w Polsce?", answers: ["Anna", "Jan", "Krzysztof", "Piotr"], correct: 0 },
+            // Historia
+            { question: "Kto był ostatnim królem Polski?", answers: ["Stanisław August Poniatowski", "August II Mocny", "Jan III Sobieski", "Zygmunt III Waza"], correct: 0 },
+            { question: "W którym roku Polska odzyskała niepodległość po I wojnie światowej?", answers: ["1914", "1918", "1922", "1939"], correct: 1 },
+            { question: "Kim był Józef Piłsudski?", answers: ["Pierwszym prezydentem Polski", "Marszałkiem Polski", "Naczelnikiem powstania listopadowego", "Królem Polski"], correct: 1 },
+            { question: "W którym mieście podpisano traktat pokojowy kończący I wojnę światową?", answers: ["Wersal", "Berlin", "Londyn", "Paryż"], correct: 0 },
+            { question: "Kim była Maria Skłodowska-Curie?", answers: ["Fizyczką i chemiczką", "Biolożką", "Matematyczką", "Astronautką"], correct: 0 },
+
+            // Geografia
+            { question: "Najdłuższa rzeka w Europie to:", answers: ["Wołga", "Dunaj", "Ren", "Dniepr"], correct: 0 },
+            { question: "Stolicą Francji jest:", answers: ["Paryż", "Marsylia", "Lyon", "Nicea"], correct: 0 },
+            { question: "Na którym kontynencie leży Brazylia?", answers: ["Afryka", "Ameryka Północna", "Ameryka Południowa", "Azja"], correct: 2 },
+            { question: "Które państwo ma najwięcej sąsiadów?", answers: ["Rosja", "Chiny", "Brazylia", "Niemcy"], correct: 0 },
+            { question: "Jaka jest najgłębsza depresja na Ziemi?", answers: ["Rów Mariański", "Morze Martwe", "Wielki Kanion Kolorado", "Dolina Śmierci"], correct: 0 },
+
+            // Literatura
+            { question: "Autorem 'Quo vadis' jest:", answers: ["Henryk Sienkiewicz", "Bolesław Prus", "Eliza Orzeszkowa", "Stefan Żeromski"], correct: 0 },
+            { question: "Który poeta napisał 'Sonety krymskie'?", answers: ["Adam Mickiewicz", "Jan Kochanowski", "Juliusz Słowacki", "Cyprian Kamil Norwid"], correct: 0 },
+            { question: "Głównym bohaterem 'Chłopów' jest:", answers: ["Maciej Boryna", "Antek Boryna", "Jagna Paczesiówna", "Kuba Socha"], correct: 0 },
+            { question: "Kto jest autorem serii książek o Harrym Potterze?", answers: ["J.K. Rowling", "Stephen King", "George R.R. Martin", "J.R.R. Tolkien"], correct: 0 },
+            { question: "W jakim mieście rozgrywa się akcja 'Mistrza i Małgorzaty'?", answers: ["Moskwa", "Petersburg", "Kijów", "Warszawa"], correct: 0 },
+
+            // Sztuka i kultura
+            { question: "Kto namalował 'Słoneczniki'?", answers: ["Vincent van Gogh", "Claude Monet", "Pablo Picasso", "Salvador Dalí"], correct: 0 },
+            { question: "Kompozytorem 'IX Symfonii' (Ody do radości) jest:", answers: ["Ludwig van Beethoven", "Wolfgang Amadeus Mozart", "Johann Sebastian Bach", "Fryderyk Chopin"], correct: 0 },
+            { question: "Reżyserem filmu 'Lista Schindlera' jest:", answers: ["Steven Spielberg", "Quentin Tarantino", "Martin Scorsese", "Christopher Nolan"], correct: 0 },
+            { question: "W którym mieście znajduje się Luwr?", answers: ["Paryż", "Rzym", "Londyn", "Madryt"], correct: 0 },
+            { question: "Kto jest autorem opery 'Carmen'?", answers: ["Georges Bizet", "Giuseppe Verdi", "Giacomo Puccini", "Richard Wagner"], correct: 0 },
+
+            // Nauka i technologia
+            { question: "Wzór chemiczny soli kuchennej to:", answers: ["H2O", "CO2", "NaCl", "O2"], correct: 2 },
+            { question: "Kto odkrył prawo powszechnego ciążenia?", answers: ["Isaac Newton", "Albert Einstein", "Galileo Galilei", "Stephen Hawking"], correct: 0 },
+            { question: "Jaka jest jednostka mocy?", answers: ["Newton", "Dżul", "Wat", "Amper"], correct: 2 },
+            { question: "Kto wynalazł telefon?", answers: ["Thomas Edison", "Nikola Tesla", "Alexander Graham Bell", "Guglielmo Marconi"], correct: 2 },
+            { question: "Co oznacza skrót 'RAM'?", answers: ["Random Access Memory", "Read Only Memory", "Really Awesome Machine", "Rapid Action Movement"], correct: 0 },
+
+            // Sport
+            { question: "Ilu zawodników liczy drużyna siatkówki?", answers: ["4", "5", "6", "7"], correct: 2 },
+            { question: "W którym roku Polska była gospodarzem Mistrzostw Świata w Piłce Siatkowej Mężczyzn?", answers: ["2010", "2014", "2018", "2022"], correct: 1 },
+            { question: "Kto jest rekordzistą świata w skoku o tyczce mężczyzn?", answers: ["Armand Duplantis", "Sergey Bubka", "Renaud Lavillenie", "Sam Kendricks"], correct: 0 },
+            { question: "W jakiej dyscyplinie sportu specjalizowała się Justyna Kowalczyk?", answers: ["Biegi narciarskie", "Łyżwiarstwo szybkie", "Skoki narciarskie", "Biathlon"], correct: 0 },
+            { question: "Który klub piłkarski zdobył Ligę Mistrzów UEFA najwięcej razy?", answers: ["Real Madryt", "FC Barcelona", "Bayern Monachium", "Liverpool FC"], correct: 0 },
+
+            // Rozrywka
+            { question: "Kto wygrał pierwszą edycję polskiej wersji programu 'Idol'?", answers: ["Alicja Janosz", "Ewelina Flinta", "Szymon Wydra", "Tomasz Makowiecki"], correct: 0 },
+            { question: "W którym filmie wystąpił Leonardo DiCaprio jako Jack Dawson?", answers: ["Titanic", "Incepcja", "Wilk z Wall Street", "Zjawa"], correct: 0 },
+            { question: "Kto jest wokalistką zespołu ABBA?", answers: ["Agnetha Fältskog", "Madonna", "Celine Dion", "Whitney Houston"], correct: 0 },
+            { question: "W jakim mieście odbywa się Festiwal Opener?", answers: ["Gdynia", "Sopot", "Kraków", "Warszawa"], correct: 0 },
+            { question: "Kto prowadzi teleturniej 'Koło Fortuny'?", answers: ["Rafał Brzozowski", "Tadeusz Sznuk", "Karol Strasburger", "Krzysztof Ibisz"], correct: 2 },
+
+            // Wiedza ogólna
+            { question: "Ile wynosi pierwiastek kwadratowy z 16?", answers: ["2", "4", "8", "16"], correct: 1 },
+            { question: "Co jest przeciwieństwem słowa 'ciemny'?", answers: ["Jasny", "Ciemniejszy", "Czarny", "Szary"], correct: 0 },
+            { question: "Ile godzin ma doba?", answers: ["12", "24", "36", "48"], correct: 1 },
+            { question: "Jaki kolor ma flaga Francji?", answers: ["Niebiesko-biało-czerwony", "Czerwono-biało-niebieski", "Zielono-biało-pomarańczowy", "Żółto-niebieski"], correct: 0 },
+            { question: "Kto jest patronem Szkocji?", answers: ["Święty Patryk", "Święty Jerzy", "Święty Andrzej", "Święty Mikołaj"], correct: 2 },
+
+            // Przyroda
+            { question: "Najszybszym zwierzęciem lądowym jest:", answers: ["Gepard", "Lew", "Struś", "Kangur"], correct: 0 },
+            { question: "Które zwierzę jest symbolem Kanady?", answers: ["Łoś", "Niedźwiedź brunatny", "Liść klonowy", "Bóbr"], correct: 2 },
+            { question: "Ile nóg ma owad?", answers: ["2", "4", "6", "8"], correct: 2 }
+        { question: "Jaki jest najwyższy wodospad na Ziemi?", answers: ["Niagara", "Angel", "Wiktoria", "Igu
+        ];
 
     let currentQuestion = 0;
 
